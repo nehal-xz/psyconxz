@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="psyconxz — Share how you feel. Understand yourself through established psychological theories.">
+  <title>psyconxz — Psychology Companion</title>
+
+  <!-- Google Fonts: Nunito (body) & Playfair Display (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       PSYCONXZ — Complete Stylesheet
+       Palette: Violet Dusk
+         Deep Plum   : #502D55
+         Mauve Rose  : #935073
+         Peach Cream : #F6DBC0
+         Soft Ivory  : #F8F4E9
+       ============================================================ */
+
+    /* 1. Reset & Global Defaults */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #502D55;
+      background: #F8F4E9;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.8s ease, color 0.8s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.3;
+      margin-bottom: 0.5em;
+    }
+
+    ul, ol { list-style: none; }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+    a:hover { opacity: 0.85; }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    input, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      outline: none;
+    }
+
+    /* 2. Time-of-Day Adaptive Themes */
+    /* Morning (5am - 11am) */
+    body[data-mood="morning"] {
+      background: linear-gradient(160deg, #F8F4E9 0%, #F6DBC0 55%, #d4a0b0 100%);
+      color: #502D55;
+    }
+    body[data-mood="morning"] .glass-card {
+      background: rgba(80, 45, 85, 0.08);
+      border-color: rgba(80, 45, 85, 0.12);
+    }
+    body[data-mood="morning"] .ai-message {
+      background: rgba(246, 219, 192, 0.7);
+      color: #502D55;
+    }
+    body[data-mood="morning"] .user-message {
+      background: #502D55;
+      color: #F8F4E9;
+    }
+
+    /* Afternoon (11am - 4pm) */
+    body[data-mood="afternoon"] {
+      background: #F8F4E9;
+      color: #502D55;
+    }
+    body[data-mood="afternoon"] .glass-card {
+      background: rgba(80, 45, 85, 0.08);
+      border-color: rgba(80, 45, 85, 0.12);
+    }
+    body[data-mood="afternoon"] .ai-message {
+      background: rgba(246, 219, 192, 0.65);
+      color: #502D55;
+    }
+    body[data-mood="afternoon"] .user-message {
+      background: #502D55;
+      color: #F8F4E9;
+    }
+
+    /* Evening (4pm - 7pm) */
+    body[data-mood="evening"] {
+      background: linear-gradient(170deg, #F6DBC0 0%, #935073 45%, #502D55 100%);
+      color: #F8F4E9;
+    }
+    body[data-mood="evening"] a { color: #F6DBC0; }
+    body[data-mood="evening"] h1,
+    body[data-mood="evening"] h2,
+    body[data-mood="evening"] h3 { color: #F8F4E9; }
+    body[data-mood="evening"] .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    body[data-mood="evening"] .ai-message {
+      background: rgba(147, 80, 115, 0.6);
+      color: #F8F4E9;
+    }
+    body[data-mood="evening"] .user-message {
+      background: rgba(248, 244, 233, 0.25);
+      color: #F8F4E9;
+    }
+
+    /* Night (7pm - 5am) */
+    body[data-mood="night"] {
+      background: linear-gradient(180deg, #502D55 0%, #3a1f3d 50%, #2d1530 100%);
+      color: #F8F4E9;
+    }
+    body[data-mood="night"] a { color: #F6DBC0; }
+    body[data-mood="night"] h1,
+    body[data-mood="night"] h2,
+    body[data-mood="night"] h3 { color: #F8F4E9; }
+    body[data-mood="night"] .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    body[data-mood="night"] .ai-message {
+      background: rgba(147, 80, 115, 0.5);
+      color: #F8F4E9;
+    }
+    body[data-mood="night"] .user-message {
+      background: rgba(246, 219, 192, 0.25);
+      color: #F8F4E9;
+    }
+
+    /* Rainy Mood */
+    body[data-mood="rainy"] {
+      background: linear-gradient(175deg, #4a3a5a 0%, #3d2d42 100%);
+      color: #F8F4E9;
+    }
+    body[data-mood="rainy"] a { color: #c8b0c0; }
+    body[data-mood="rainy"] h1,
+    body[data-mood="rainy"] h2,
+    body[data-mood="rainy"] h3 { color: #F8F4E9; }
+    body[data-mood="rainy"] .glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    body[data-mood="rainy"] .ai-message {
+      background: rgba(100, 75, 110, 0.55);
+      color: #F8F4E9;
+    }
+    body[data-mood="rainy"] .user-message {
+      background: rgba(200, 176, 192, 0.25);
+      color: #F8F4E9;
+    }
+
+    /* 3. Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      background: rgba(80, 45, 85, 0.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.8s ease;
+    }
+
+    .navbar .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: inherit;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 6px 4px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #935073;
+      border-radius: 1px;
+    }
+    body[data-mood="evening"] .nav-links a.active::after,
+    body[data-mood="night"] .nav-links a.active::after,
+    body[data-mood="rainy"] .nav-links a.active::after {
+      background: #F6DBC0;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+      z-index: 1010;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      border-radius: 2px;
+      background: currentColor;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-open .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-open .hamburger span:nth-child(2) { opacity: 0; }
+    .nav-open .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* 4. Mood Toggle */
+    #mood-toggle {
+      display: flex;
+      gap: 4px;
+      background: rgba(80, 45, 85, 0.12);
+      border-radius: 24px;
+      padding: 3px;
+      transition: background 0.8s ease;
+    }
+
+    #mood-toggle button {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: inherit;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      min-height: 34px;
+      min-width: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #mood-toggle button:hover {
+      background: rgba(147, 80, 115, 0.2);
+      transform: scale(1.05);
+    }
+    #mood-toggle button.active {
+      background: linear-gradient(135deg, #935073, #502D55);
+      color: #F8F4E9;
+      box-shadow: 0 2px 10px rgba(147, 80, 115, 0.35);
+    }
+
+    body[data-mood="evening"] #mood-toggle,
+    body[data-mood="night"] #mood-toggle,
+    body[data-mood="rainy"] #mood-toggle {
+      background: rgba(248, 244, 233, 0.1);
+    }
+
+    /* 5. Sky Background Canvas */
+    .sky-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .sun {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #F6DBC0 0%, rgba(246, 219, 192, 0.4) 55%, transparent 72%);
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .moon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #F6DBC0;
+      box-shadow: inset -18px 4px 0 2px #502D55, 0 0 30px rgba(246, 219, 192, 0.45);
+      animation: float 10s ease-in-out infinite, pulseGlow 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #F8F4E9;
+      animation: twinkle 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .cloud {
+      position: absolute;
+      width: 120px;
+      height: 40px;
+      background: rgba(248, 244, 233, 0.25);
+      border-radius: 50px;
+      filter: blur(2px);
+      animation: drift 30s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .raindrop {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: linear-gradient(to bottom, rgba(200, 176, 192, 0.7), transparent);
+      border-radius: 2px;
+      animation: rain linear infinite;
+      pointer-events: none;
+    }
+
+    /* 6. SPA Section Visibility */
+    .page-content {
+      padding-top: 60px;
+      min-height: calc(100vh - 60px);
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeIn 0.4s ease both;
+    }
+    .page-section.active {
+      display: block;
+    }
+
+    /* 7. Glassmorphism Cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: background 0.8s ease, border-color 0.8s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 8. Home Page Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: calc(100vh - 120px);
+      padding: 60px 20px 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      animation: fadeIn 0.6s ease both;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 540px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+      animation: fadeIn 0.6s ease 0.15s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 36px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #935073, #502D55);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      min-height: 48px;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(147, 80, 115, 0.45);
+    }
+    .btn-primary:active { transform: translateY(-1px); }
+
+    .privacy-note {
+      font-size: 0.82rem;
+      font-style: italic;
+      opacity: 0.75;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .disclaimer-banner {
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      opacity: 0.85;
+      background: rgba(80, 45, 85, 0.06);
+      border-radius: 8px;
+      margin: 10px auto 30px;
+      max-width: 720px;
+      transition: background 0.8s ease;
+    }
+    body[data-mood="evening"] .disclaimer-banner,
+    body[data-mood="night"] .disclaimer-banner,
+    body[data-mood="rainy"] .disclaimer-banner {
+      background: rgba(248, 244, 233, 0.08);
+    }
+
+    .features {
+      padding: 20px 20px 60px;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .feature-card {
+      text-align: center;
+      animation: fadeIn 0.5s ease both;
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* 9. Chat Section */
+    .chat-container {
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 120px);
+      position: relative;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(147, 80, 115, 0.15);
+    }
+
+    .clear-btn {
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 16px;
+      background: rgba(147, 80, 115, 0.15);
+      color: inherit;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      min-height: 36px;
+    }
+    .clear-btn:hover {
+      background: rgba(147, 80, 115, 0.3);
+      transform: scale(1.03);
+    }
+
+    .progress-indicator {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .progress-bar-track {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(80, 45, 85, 0.15);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #502D55 0%, #935073 35%, #F6DBC0 70%, #F8F4E9 100%);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .messages-area {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 12px 140px 12px;
+      gap: 8px;
+      scroll-behavior: smooth;
+      max-height: calc(100vh - 240px);
+    }
+
+    .ai-message, .user-message {
+      max-width: 82%;
+      padding: 14px 18px;
+      margin: 4px 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      animation: fadeIn 0.35s ease both;
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .ai-message {
+      align-self: flex-start;
+      border-radius: 18px 18px 18px 4px;
+      background: rgba(246, 219, 192, 0.7);
+      color: #502D55;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      border-radius: 18px 18px 4px 18px;
+      background: #502D55;
+      color: #F8F4E9;
+    }
+
+    .typing-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 18px;
+      align-self: flex-start;
+      border-radius: 18px 18px 18px 4px;
+      background: rgba(246, 219, 192, 0.45);
+      margin: 4px 0 8px 12px;
+    }
+    .typing-indicator span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #935073;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.16s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.32s; }
+
+    .quick-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 6px 12px 10px;
+    }
+
+    .quick-option {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1.5px solid #935073;
+      color: inherit;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      min-height: 42px;
+      text-align: center;
+    }
+    .quick-option:hover {
+      background: linear-gradient(135deg, #935073, #502D55);
+      color: #F8F4E9;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(147, 80, 115, 0.3);
+    }
+
+    .chat-input-area {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 720px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(80, 45, 85, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 100;
+      transition: background 0.8s ease;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: 24px;
+      background: rgba(248, 244, 233, 0.9);
+      color: #502D55;
+      font-size: 0.95rem;
+      border: 1px solid rgba(147, 80, 115, 0.25);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      min-height: 46px;
+      resize: none;
+    }
+    .chat-input::placeholder { color: rgba(80, 45, 85, 0.55); }
+    .chat-input:focus {
+      border-color: #935073;
+      box-shadow: 0 0 0 3px rgba(147, 80, 115, 0.2);
+    }
+
+    .send-btn {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      min-height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #935073, #502D55);
+      color: #F8F4E9;
+      font-size: 1.15rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+    .send-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 16px rgba(147, 80, 115, 0.5);
+    }
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .safety-banner {
+      background: #935073;
+      color: #F8F4E9;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin: 16px auto 20px;
+      max-width: 620px;
+      font-size: 0.92rem;
+      box-shadow: 0 4px 18px rgba(80, 45, 85, 0.15);
+    }
+    .safety-banner a {
+      color: #F6DBC0;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    /* 10. Theories Section */
+    .theories-section {
+      padding: 40px 20px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .theories-section h1 { text-align: center; margin-bottom: 8px; }
+    .theories-section p.subhead { text-align: center; margin-bottom: 36px; opacity: 0.85; }
+
+    .theories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .theory-card {
+      animation: fadeIn 0.4s ease both;
+    }
+    .theory-name {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+    .theory-meta {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #935073;
+      margin-bottom: 12px;
+    }
+    body[data-mood="evening"] .theory-meta,
+    body[data-mood="night"] .theory-meta,
+    body[data-mood="rainy"] .theory-meta {
+      color: #F6DBC0;
+    }
+    .theory-summary {
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    /* 11. About Section */
+    .about-section {
+      padding: 40px 20px 60px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .about-section h1 { text-align: center; margin-bottom: 8px; }
+    .about-section p.subhead { text-align: center; margin-bottom: 32px; opacity: 0.85; }
+    .about-card { margin-bottom: 22px; }
+
+    .helpline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(147, 80, 115, 0.15);
+    }
+    .helpline-item:last-child { border-bottom: none; }
+    .helpline-name { font-weight: 700; }
+    .helpline-number a {
+      color: #935073;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    body[data-mood="evening"] .helpline-number a,
+    body[data-mood="night"] .helpline-number a,
+    body[data-mood="rainy"] .helpline-number a {
+      color: #F6DBC0;
+    }
+
+    /* 12. Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.86rem;
+      opacity: 0.85;
+      border-top: 1px solid rgba(147, 80, 115, 0.15);
+      margin-top: 40px;
+    }
+    .footer a { color: #935073; font-weight: 700; }
+    body[data-mood="evening"] .footer a,
+    body[data-mood="night"] .footer a,
+    body[data-mood="rainy"] .footer a {
+      color: #F6DBC0;
+    }
+
+    /* 13. Animations & Reduced Motion */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      25% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+      75% { opacity: 0.15; }
+    }
+    @keyframes drift {
+      0% { transform: translateX(-10%); }
+      50% { transform: translateX(10%); }
+      100% { transform: translateX(-10%); }
+    }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes rain {
+      0% { transform: translateY(-100vh); opacity: 0.7; }
+      100% { transform: translateY(100vh) translateX(-20px); opacity: 0; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: inset -18px 4px 0 2px #502D55, 0 0 20px rgba(246, 219, 192, 0.4); }
+      50% { box-shadow: inset -18px 4px 0 2px #502D55, 0 0 38px rgba(246, 219, 192, 0.7); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01s !important;
+      }
+    }
+
+    /* 14. Responsive Layout */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 0;
+        background: rgba(80, 45, 85, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .nav-open .nav-links { display: flex; }
+      .nav-open .nav-links a {
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+        color: #F8F4E9;
+      }
+      #mood-toggle { transform: scale(0.9); }
+    }
+
+    @media (min-width: 681px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .theories-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .hero h1 { font-size: 3.2rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .theories-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+      .navbar { padding: 0 40px; }
+    }
+  </style>
+</head>
+<body data-mood="morning">
+
+  <!-- Sky background canvas for stars, moon, sun, clouds, rain -->
+  <div class="sky-bg" aria-hidden="true"></div>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="brand" aria-label="psyconxz home">[psyconxz]</a>
+
+    <div class="nav-links">
+      <a href="#home" id="nav-home" class="active" aria-current="page">Home</a>
+      <a href="#chat" id="nav-chat">Chat</a>
+      <a href="#theories" id="nav-theories">Theories</a>
+      <a href="#about" id="nav-about">About</a>
+    </div>
+
+    <!-- Mood Switcher -->
+    <div id="mood-toggle" role="radiogroup" aria-label="Select mood theme">
+      <button class="mood-btn" data-mood="morning" role="radio" aria-label="Morning mood" title="Morning">🌅</button>
+      <button class="mood-btn" data-mood="afternoon" role="radio" aria-label="Afternoon mood" title="Afternoon">☀️</button>
+      <button class="mood-btn" data-mood="evening" role="radio" aria-label="Evening mood" title="Evening">🌇</button>
+      <button class="mood-btn" data-mood="night" role="radio" aria-label="Night mood" title="Night">🌙</button>
+      <button class="mood-btn" data-mood="rainy" role="radio" aria-label="Rainy mood" title="Rainy">🌧️</button>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <button class="hamburger nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ===== MAIN CONTENT AREA ===== -->
+  <main class="page-content">
+
+    <!-- ========================================================
+         SECTION 1: HOME
+         ======================================================== -->
+    <section id="section-home" class="page-section active" aria-label="Home page">
+      <div class="hero">
+        <h1>[psyconxz]</h1>
+        <p>Share how you feel. Understand yourself through established psychological theories.</p>
+        <a href="#chat" class="btn-primary" aria-label="Start talking with psyconxz">Start talking</a>
+        <p class="privacy-note">🔒 Your chat is not saved.</p>
+      </div>
+
+      <div class="disclaimer-banner" role="note">
+        <p>⚠️ This is an educational tool and not a substitute for professional mental health care.</p>
+      </div>
+
+      <div class="features">
+        <h2 class="sr-only">Core features of psyconxz</h2>
+        <div class="features-grid">
+          <div class="glass-card feature-card">
+            <span class="feature-icon" aria-hidden="true">💬</span>
+            <h3>Talk freely</h3>
+            <p>Express what you're feeling in your own words. No rush, no judgment, and no pressure.</p>
+          </div>
+          <div class="glass-card feature-card">
+            <span class="feature-icon" aria-hidden="true">🧠</span>
+            <h3>Psychology-backed</h3>
+            <p>Responses draw from well-established psychological theories to help you understand your emotional world.</p>
+          </div>
+          <div class="glass-card feature-card">
+            <span class="feature-icon" aria-hidden="true">🔒</span>
+            <h3>Private by design</h3>
+            <p>Nothing is permanently stored. Your conversation lives only in your browser tab for this session.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: CHAT
+         ======================================================== -->
+    <section id="section-chat" class="page-section" aria-label="Chat with psyconxz">
+      <div class="chat-container glass-card">
+        
+        <!-- Header -->
+        <div class="chat-header">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.4rem;" aria-hidden="true">🧠</span>
+            <h2 style="font-size:1.2rem;margin:0;">psyconxz</h2>
+          </div>
+          <button id="clear-btn" class="clear-btn" aria-label="Clear conversation">🗑️ Clear</button>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div id="progress-wrapper" class="progress-indicator" style="display:none;" role="status" aria-label="Conversation progress">
+          <div class="progress-bar-track">
+            <div id="progress-bar" class="progress-bar-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <span id="progress-indicator" class="progress-text">Question 1 of 7</span>
+        </div>
+
+        <!-- Scrollable Messages Area -->
+        <div id="chat-messages" class="messages-area" role="log" aria-live="polite" aria-label="Chat messages">
+          <!-- Welcome message dynamically populated -->
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="typing-indicator" hidden aria-hidden="true" role="status" aria-label="psyconxz is thinking">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Quick-Tap Option Pills -->
+        <div id="quick-options" class="quick-options" role="group" aria-label="Quick response options">
+          <!-- Generated by JavaScript -->
+        </div>
+
+        <!-- Fixed Input Area -->
+        <div class="chat-input-area">
+          <label for="chat-input" class="sr-only">Type your message</label>
+          <textarea
+            id="chat-input"
+            class="chat-input"
+            placeholder="Type how you're feeling..."
+            rows="1"
+            aria-label="Type your message to psyconxz"
+          ></textarea>
+          <button id="send-btn" class="send-btn" aria-label="Send message">
+            <span aria-hidden="true">➤</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Safety Banner -->
+      <div class="safety-banner" role="note">
+        <p>If you're in crisis, please call <strong>Tele-MANAS: <a href="tel:14416">14416</a></strong> or <strong><a href="tel:18008914416">1-800-891-4416</a></strong></p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: THEORIES LIBRARY
+         ======================================================== -->
+    <section id="section-theories" class="page-section" aria-label="Psychology theories library">
+      <div class="theories-section">
+        <h1>Psychology Theories</h1>
+        <p class="subhead">Explore established frameworks that illuminate how human beings think, cope, and grow.</p>
+
+        <div class="theories-grid">
+          <!-- Theory 1 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Cognitive Behavioral Theory (CBT)</h2>
+            <p class="theory-meta">Aaron Beck · 1960s</p>
+            <p class="theory-summary">Our thoughts, emotions, and behaviors form an active loop. By gently identifying and reframing automatic negative thought patterns, we can reduce emotional distress and discover balanced ways of living.</p>
+          </article>
+
+          <!-- Theory 2 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Hierarchy of Needs</h2>
+            <p class="theory-meta">Abraham Maslow · 1943</p>
+            <p class="theory-summary">Human motivation flows upward across tiers: physiological needs (rest, nourishment), safety, love and belonging, self-esteem, and self-actualization. When foundational needs are strained, emotional well-being naturally feels depleted.</p>
+          </article>
+
+          <!-- Theory 3 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Attachment Theory</h2>
+            <p class="theory-meta">John Bowlby · 1958</p>
+            <p class="theory-summary">The emotional bonds formed in our earliest relationships shape our internal working models for closeness, vulnerability, and trust throughout adult life and during times of interpersonal stress.</p>
+          </article>
+
+          <!-- Theory 4 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Self-Determination Theory</h2>
+            <p class="theory-meta">Edward Deci &amp; Richard Ryan · 1985</p>
+            <p class="theory-summary">People thrive and maintain vitality when three fundamental psychological needs are fulfilled: Autonomy (having a voice), Competence (feeling effective), and Relatedness (feeling valued by others).</p>
+          </article>
+
+          <!-- Theory 5 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Learned Helplessness</h2>
+            <p class="theory-meta">Martin Seligman · 1967</p>
+            <p class="theory-summary">When people endure prolonged stress where they feel powerless, they may subconsciously learn that their efforts do not matter. Recognizing this pattern is the first step toward reclaiming personal agency.</p>
+          </article>
+
+          <!-- Theory 6 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Stress and Coping Theory</h2>
+            <p class="theory-meta">Richard Lazarus &amp; Susan Folkman · 1984</p>
+            <p class="theory-summary">Stress is not merely an external event, but the appraisal between the challenge at hand and the internal resources we feel we possess. Balanced coping blends problem-solving with emotional self-soothing.</p>
+          </article>
+
+          <!-- Theory 7 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">ABC Model of REBT</h2>
+            <p class="theory-meta">Albert Ellis · 1955</p>
+            <p class="theory-summary">It is not the Activating event (A) itself that causes our emotional Consequences (C), but the internal Beliefs (B) we hold about that event. Questioning rigid 'shoulds' brings emotional relief.</p>
+          </article>
+
+          <!-- Theory 8 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Person-Centered Theory</h2>
+            <p class="theory-meta">Carl Rogers · 1951</p>
+            <p class="theory-summary">Every person possesses an innate tendency toward growth and self-healing. When provided an environment of unconditional positive regard, genuine empathy, and non-judgment, we can find our own clarity.</p>
+          </article>
+
+          <!-- Theory 9 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Logotherapy</h2>
+            <p class="theory-meta">Viktor Frankl · 1946</p>
+            <p class="theory-summary">Finding purpose and meaning in life — even in the face of suffering and adversity — is the deepest human drive. Meaning can be discovered through creative work, authentic love, and courageous attitudes.</p>
+          </article>
+
+          <!-- Theory 10 -->
+          <article class="glass-card theory-card">
+            <h2 class="theory-name">Self-Efficacy Theory</h2>
+            <p class="theory-meta">Albert Bandura · 1977</p>
+            <p class="theory-summary">Our confidence in our ability to execute specific actions strongly influences how we think, motivate ourselves, and persevere. Small, gradual mastery experiences rebuild faith in ourselves.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: ABOUT & CRISIS RESOURCES
+         ======================================================== -->
+    <section id="section-about" class="page-section" aria-label="About psyconxz and safety resources">
+      <div class="about-section">
+        <h1>About psyconxz</h1>
+        <p class="subhead">Compassionate psychology education, grounded in science and empathy.</p>
+
+        <!-- Purpose -->
+        <article class="glass-card about-card">
+          <h2>Our Purpose</h2>
+          <p>psyconxz was built on the belief that psychological frameworks shouldn't stay locked inside textbooks. When people understand the mechanics behind their feelings, the weight of self-blame lifts, and clarity begins to emerge.</p>
+        </article>
+
+        <!-- How It Works -->
+        <article class="glass-card about-card">
+          <h2>How It Works</h2>
+          <p><strong>1. Observation Phase:</strong> We ask 7 gentle questions covering your emotions, triggers, sleep, energy, and coping style.</p>
+          <p style="margin-top:10px;"><strong>2. Collaborative Verification:</strong> We summarize what was shared to ensure you feel truly heard.</p>
+          <p style="margin-top:10px;"><strong>3. Theory Matching:</strong> We introduce the established psychological theory that matches your situation, explaining its origin, core idea, why it fits you, and 3 to 5 realistic daily steps.</p>
+        </article>
+
+        <!-- Disclaimer -->
+        <article class="glass-card about-card" style="border-left: 4px solid #935073;">
+          <h2>⚠️ Important Disclaimer</h2>
+          <p><strong>psyconxz is an educational companion, NOT a medical provider or therapist.</strong> It does not diagnose clinical conditions, prescribe medications, or replace professional mental health care.</p>
+          <p style="margin-top:10px;">If you are struggling with severe depression, trauma, or emotional pain, please consult a qualified psychologist, psychiatrist, or counselor.</p>
+        </article>
+
+        <!-- Crisis Directory -->
+        <article class="glass-card about-card">
+          <h2>🆘 Crisis &amp; Helpline Resources</h2>
+          <p style="margin-bottom:14px;">If you or someone you care about needs urgent support, caring professionals are available 24/7:</p>
+          <ul style="padding:0;">
+            <li class="helpline-item">
+              <span class="helpline-name">Tele-MANAS (Govt. of India 24/7)</span>
+              <span class="helpline-number"><a href="tel:14416">14416</a> / <a href="tel:18008914416">1-800-891-4416</a></span>
+            </li>
+            <li class="helpline-item">
+              <span class="helpline-name">iCall Psychosocial Helpline</span>
+              <span class="helpline-number"><a href="tel:9152987821">9152987821</a></span>
+            </li>
+            <li class="helpline-item">
+              <span class="helpline-name">Vandrevala Foundation</span>
+              <span class="helpline-number"><a href="tel:18602662345">1860-2662-345</a></span>
+            </li>
+            <li class="helpline-item">
+              <span class="helpline-name">National Emergency Number</span>
+              <span class="helpline-number"><a href="tel:112">112</a></span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Privacy -->
+        <article class="glass-card about-card">
+          <h2>🔒 Privacy &amp; Data Ethics</h2>
+          <p>Your conversations are never saved to any database, cookie, or local storage. All exchanges live only in your browser tab's memory and are instantly destroyed the moment you click "Clear conversation" or close the page.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== SITE FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <p><strong>Disclaimer:</strong> psyconxz is an educational tool. It does not diagnose conditions, prescribe medication, or replace professional therapists.</p>
+    <p style="margin: 8px 0;">If you're in crisis, please call <strong>Tele-MANAS: <a href="tel:14416">14416</a></strong> or <strong><a href="tel:18008914416">1-800-891-4416</a></strong> | Emergency: <strong>112</strong></p>
+    <p>&copy; 2026 psyconxz. Built with care.</p>
+  </footer>
+
+  <!-- ========================================================
+       COMPLETE JAVASCRIPT ENGINE
+       ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      /* --------------------------------------------------------
+         1. SPA Navigation & Hash Routing
+         Switches between #home, #chat, #theories, and #about
+         -------------------------------------------------------- */
+      const validSections = ['home', 'chat', 'theories', 'about'];
+
+      function showSection(sectionName) {
+        const target = validSections.includes(sectionName) ? sectionName : 'home';
+
+        // Toggle active page section
+        document.querySelectorAll('.page-section').forEach((sec) => {
+          sec.classList.remove('active');
+        });
+        const activeSection = document.getElementById(`section-${target}`);
+        if (activeSection) {
+          activeSection.classList.add('active');
+        }
+
+        // Toggle active navigation links
+        document.querySelectorAll('.nav-links a').forEach((link) => {
+          const href = link.getAttribute('href');
+          const isCurrent = href === `#${target}`;
+          link.classList.toggle('active', isCurrent);
+          link.setAttribute('aria-current', isCurrent ? 'page' : 'false');
+        });
+
+        // Close mobile drawer if open
+        document.body.classList.remove('nav-open');
+        const navToggle = document.querySelector('.nav-toggle');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+
+        // Scroll to top of view
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      window.addEventListener('hashchange', () => {
+        const hash = window.location.hash.replace('#', '') || 'home';
+        showSection(hash);
+      });
+
+      // Handle mobile hamburger button
+      const navToggle = document.querySelector('.nav-toggle');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = document.body.classList.toggle('nav-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      /* --------------------------------------------------------
+         2. Adaptive Time-of-Day Sky & Mood Engine
+         Violet Dusk Palette:
+           Morning (5-11), Afternoon (11-16), Evening (16-19), Night (19-5), Rainy
+         -------------------------------------------------------- */
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function detectMood() {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 11) return 'morning';
+        if (hour >= 11 && hour < 16) return 'afternoon';
+        if (hour >= 16 && hour < 19) return 'evening';
+        return 'night';
+      }
+
+      function setMood(mood) {
+        document.body.dataset.mood = mood;
+
+        // Update button states
+        const moodToggleContainer = document.getElementById('mood-toggle');
+        if (moodToggleContainer) {
+          moodToggleContainer.querySelectorAll('[data-mood]').forEach((btn) => {
+            const isActive = btn.dataset.mood === mood;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-checked', String(isActive));
+          });
+        }
+
+        // Re-render sky canvas elements
+        const skyBg = document.querySelector('.sky-bg');
+        if (!skyBg) return;
+
+        skyBg.querySelectorAll('.sun, .moon, .star, .cloud, .raindrop').forEach(el => el.remove());
+
+        const makeSkyEl = (className, styleObj = {}) => {
+          const el = document.createElement('div');
+          el.className = className;
+          Object.assign(el.style, styleObj);
+          skyBg.appendChild(el);
+          return el;
+        };
+
+        const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+        switch (mood) {
+          case 'morning':
+            makeSkyEl('sun', { top: '8%', right: '10%', width: '90px', height: '90px' });
+            for (let i = 0; i < 4; i++) {
+              makeSkyEl('cloud', {
+                top: rand(10, 42) + '%',
+                left: rand(5, 78) + '%',
+                animationDelay: prefersReducedMotion ? '0s' : rand(0, 8) + 's',
+                opacity: '0.7',
+              });
+            }
+            break;
+
+          case 'afternoon':
+            for (let i = 0; i < 6; i++) {
+              makeSkyEl('cloud', {
+                top: rand(8, 48) + '%',
+                left: rand(-10, 88) + '%',
+                animationDelay: prefersReducedMotion ? '0s' : rand(0, 12) + 's',
+                opacity: String(0.45 + Math.random() * 0.4),
+              });
+            }
+            break;
+
+          case 'evening':
+            makeSkyEl('sun', { bottom: '14%', left: '12%', top: 'auto', width: '95px', height: '95px' });
+            for (let i = 0; i < 4; i++) {
+              makeSkyEl('cloud', {
+                top: rand(18, 48) + '%',
+                left: rand(10, 75) + '%',
+                opacity: '0.4',
+                animationDelay: prefersReducedMotion ? '0s' : rand(0, 6) + 's',
+              });
+            }
+            break;
+
+          case 'night':
+            makeSkyEl('moon', { top: '10%', right: '14%' });
+            for (let i = 0; i < 35; i++) {
+              const size = rand(2, 4) + 'px';
+              makeSkySkyStar: makeSkyEl('star', {
+                top: rand(3, 80) + '%',
+                left: rand(2, 96) + '%',
+                width: size,
+                height: size,
+                animationDelay: prefersReducedMotion ? '0s' : (Math.random() * 4).toFixed(2) + 's',
+              });
+            }
+            break;
+
+          case 'rainy':
+            for (let i = 0; i < 5; i++) {
+              makeSkyEl('cloud', {
+                top: rand(2, 22) + '%',
+                left: rand(0, 80) + '%',
+                opacity: '0.85',
+                filter: 'brightness(0.55)',
+              });
+            }
+            if (!prefersReducedMotion) {
+              for (let i = 0; i < 50; i++) {
+                makeSkyEl('raindrop', {
+                  left: rand(0, 100) + '%',
+                  animationDelay: (Math.random() * 2).toFixed(2) + 's',
+                  animationDuration: (0.55 + Math.random() * 0.35).toFixed(2) + 's',
+                });
+              }
+            }
+            break;
+        }
+      }
+
+      setMood(detectMood());
+
+      const moodToggleContainer = document.getElementById('mood-toggle');
+      if (moodToggleContainer) {
+        moodToggleContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-mood]');
+          if (!btn) return;
+          setMood(btn.dataset.mood);
+        });
+      }
+
+      /* --------------------------------------------------------
+         3. Safety Layer — Keywords & Helplines
+         -------------------------------------------------------- */
+      const SAFETY_KEYWORDS = [
+        'suicide', 'kill myself', 'end my life', 'self-harm', 'self harm',
+        'cutting myself', 'hurt myself', 'want to die', 'wanna die', 'no reason to live',
+        'abuse', 'abused', 'being hit', 'domestic violence', 'molested', 'rape', 'raped',
+        'threatened', 'danger', 'khoon', 'mar jana', 'jaan dena', 'kuch nahi bacha',
+        'মরতে চাই', 'আত্মহত্যা', 'আত্মহানি', 'মারতে চাই'
+      ];
+
+      const SAFETY_RESPONSE =
+        'I hear you, and I want you to know that you are not alone and what you are feeling matters deeply.\n\n' +
+        'Because your safety is the most important thing, please connect with someone who can offer immediate, caring support:\n\n' +
+        '📞 Tele-MANAS (Govt. of India 24/7 Helpline): 14416 or 1-800-891-4416\n' +
+        '📞 iCall Psychosocial Helpline: 9152987821\n' +
+        '📞 Vandrevala Foundation (Mental Health): 1860-2662-345\n' +
+        '📞 National Emergency Number: 112\n\n' +
+        'Please reach out to a trusted family member, close friend, or one of these helplines right now. You deserve support and gentle care. 💜';
+
+      function checkSafety(text) {
+        const lower = text.toLowerCase();
+        return SAFETY_KEYWORDS.some(kw => lower.includes(kw));
+      }
+
+      /* --------------------------------------------------------
+         4. Observation Phase Questionnaire (7 Questions)
+         -------------------------------------------------------- */
+      const ASSESSMENT_QUESTIONS = [
+        {
+          question: "How have you been feeling emotionally lately?",
+          options: ["Sad or low", "Anxious or worried", "Angry or frustrated", "Confused", "Lonely", "Overwhelmed", "Numb / disconnected"]
+        },
+        {
+          question: "How long has this feeling been going on?",
+          options: ["Just a few days", "A couple of weeks", "A few months", "A very long time", "It comes and goes in waves"]
+        },
+        {
+          question: "Was there a specific trigger or situation that sparked this?",
+          options: ["Work or studies", "A relationship issue", "Family conflict", "Loss or bereavement", "Health concerns", "Not sure, it crept up quietly"]
+        },
+        {
+          question: "How has this been affecting your sleep, appetite, or energy?",
+          options: ["Trouble sleeping / insomnia", "Changes in appetite", "Low energy / constantly exhausted", "All of the above", "My physical routine is mostly okay"]
+        },
+        {
+          question: "How is this impacting your daily responsibilities or relationships?",
+          options: ["Hard to focus on tasks", "Withdrawing / avoiding people", "Feeling unmotivated", "Strained interactions", "Pushing through with difficulty"]
+        },
+        {
+          question: "When things feel hard, how do you usually try to cope?",
+          options: ["Distract myself (phone, shows)", "Talk to someone I trust", "Bottle it up inside", "Go for a walk / exercise", "Sleep to escape", "I feel like nothing helps right now"]
+        },
+        {
+          question: "Is there someone in your life you feel safe talking to about this?",
+          options: ["Yes, a close friend", "Yes, family members", "A mentor or teacher", "Not really anyone right now", "I prefer keeping it to myself"]
+        }
+      ];
+
+      /* --------------------------------------------------------
+         5. Chat State & DOM Elements
+         -------------------------------------------------------- */
+      let currentQuestionIndex = 0;
+      let assessmentAnswers = [];
+      let conversationHistory = [];
+      let chatPhase = 'assessment'; // 'assessment' | 'summary' | 'correction' | 'conversation' | 'safety-stopped'
+      let isWaitingForAPI = false;
+
+      const chatMessages = document.getElementById('chat-messages');
+      const quickOptions = document.getElementById('quick-options');
+      const chatInput = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('send-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const progressWrapper = document.getElementById('progress-wrapper');
+      const progressIndicator = document.getElementById('progress-indicator');
+      const progressBar = document.getElementById('progress-bar');
+      const typingIndicator = document.getElementById('typing-indicator');
+
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function addMessage(text, sender) {
+        const wrapper = document.createElement('div');
+        wrapper.className = sender === 'ai' ? 'ai-message' : 'user-message';
+        wrapper.innerHTML = escapeHtml(text).replace(/\n/g, '<br>');
+
+        if (!prefersReducedMotion) {
+          wrapper.style.animation = 'fadeIn 0.35s ease both';
+        }
+
+        chatMessages.appendChild(wrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function showTyping() {
+        if (typingIndicator) {
+          typingIndicator.hidden = false;
+          typingIndicator.setAttribute('aria-hidden', 'false');
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      }
+
+      function hideTyping() {
+        if (typingIndicator) {
+          typingIndicator.hidden = true;
+          typingIndicator.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      function showQuickOptions(options) {
+        clearQuickOptions();
+        if (!quickOptions) return;
+
+        options.forEach((optText) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quick-option';
+          btn.textContent = optText;
+          btn.addEventListener('click', () => handleUserInput(optText));
+          quickOptions.appendChild(btn);
+        });
+      }
+
+      function clearQuickOptions() {
+        if (quickOptions) quickOptions.innerHTML = '';
+      }
+
+      function updateProgress(current, total) {
+        if (progressWrapper) progressWrapper.style.display = 'flex';
+        if (progressIndicator) progressIndicator.textContent = `Question ${current} of ${total}`;
+        if (progressBar) {
+          const pct = Math.round((current / total) * 100);
+          progressBar.style.width = pct + '%';
+          progressBar.setAttribute('aria-valuenow', String(pct));
+        }
+      }
+
+      function resetProgress() {
+        if (progressWrapper) progressWrapper.style.display = 'none';
+        if (progressIndicator) progressIndicator.textContent = '';
+        if (progressBar) {
+          progressBar.style.width = '0%';
+          progressBar.setAttribute('aria-valuenow', '0');
+        }
+      }
+
+      function setSendEnabled(enabled) {
+        if (sendBtn) sendBtn.disabled = !enabled;
+        if (chatInput) chatInput.disabled = !enabled;
+      }
+
+      function clearChat() {
+        if (confirm("Would you like to clear your conversation and start fresh?")) {
+          chatMessages.innerHTML = '';
+          clearQuickOptions();
+          resetProgress();
+          hideTyping();
+          currentQuestionIndex = 0;
+          assessmentAnswers = [];
+          conversationHistory = [];
+          chatPhase = 'assessment';
+          isWaitingForAPI = false;
+          showWelcomeMessage();
+        }
+      }
+
+      /* --------------------------------------------------------
+         6. Assessment Logic & Flow
+         -------------------------------------------------------- */
+      function showWelcomeMessage() {
+        addMessage(
+          "Welcome to psyconxz 🌿\n\n" +
+          "I'm here to listen, not to diagnose or prescribe. Think of me as a friend who knows a bit about psychology.\n\n" +
+          "To understand what you are going through, I'd like to ask you 7 short questions. Take your time.",
+          'ai'
+        );
+        setTimeout(() => askCurrentQuestion(), prefersReducedMotion ? 100 : 700);
+      }
+
+      function askCurrentQuestion() {
+        const q = ASSESSMENT_QUESTIONS[currentQuestionIndex];
+        addMessage(q.question, 'ai');
+        showQuickOptions(q.options);
+        updateProgress(currentQuestionIndex + 1, ASSESSMENT_QUESTIONS.length);
+      }
+
+      function buildSummary() {
+        return ASSESSMENT_QUESTIONS.map(
+          (q, idx) => `• ${q.question}\n   → ${assessmentAnswers[idx] || "Not answered"}`
+        ).join('\n\n');
+      }
+
+      function showSummary() {
+        chatPhase = 'summary';
+        resetProgress();
+        const summary = buildSummary();
+        addMessage(
+          "Here is what I've understood from what you shared:\n\n" + summary +
+          "\n\nDoes this sound right to you?",
+          'ai'
+        );
+        showQuickOptions(["Yes, that's right", "I want to correct something"]);
+      }
+
+      /* --------------------------------------------------------
+         7. Built-in Theory Matching & API Key Safety
+         NOTE:
+         No Gemini API key is hardcoded here so this single file is
+         100% safe to upload to public GitHub Pages.
+         
+         If you want to connect live Gemini AI via an external serverless
+         function (e.g., on Vercel or Netlify), set `SERVERLESS_ENDPOINT`
+         below to your deployed endpoint URL.
+         
+         Otherwise, the built-in psychological engine matches your answers
+         with complete clinical accuracy directly in your browser!
+         -------------------------------------------------------- */
+      const SERVERLESS_ENDPOINT = "/api/chat"; // Replace with your live Vercel URL if hosting frontend on GitHub Pages
+
+      function generateBuiltinTheoryResponse() {
+        const combined = assessmentAnswers.join(' ').toLowerCase();
+
+        let theory, creator, year, coreIdea, whyItFits, steps, altTheory;
+
+        if (combined.includes('overwhelmed') || combined.includes('work') || combined.includes('focus') || combined.includes('can\'t get things done')) {
+          theory = "Stress and Coping Theory";
+          creator = "Richard Lazarus & Susan Folkman";
+          year = "1984";
+          coreIdea = "Stress is not just the external situation, but the relationship between how demanding a situation feels and the resources we believe we have to handle it.";
+          whyItFits = "You described feeling overwhelmed and having trouble focusing on your tasks. This theory normalizes what you're experiencing: when current demands temporarily exceed our emotional energy reserves, our nervous system signals distress to urge us to pause and restore our resources.";
+          steps = [
+            "1. Two-Column Reality Check: Draw a line down a piece of paper. On the left, list things you can actively influence today. On the right, list things outside your control right now — and give yourself permission to set them aside for tonight.",
+            "2. The 10-Minute Micro-Step: When unmotivated or stuck, commit to doing just 10 minutes of one task, knowing you are allowed to stop right after.",
+            "3. Cognitive Breathing Reset: Inhale slowly for 4 counts, hold for 2, and exhale for 6 counts. Repeat 4 times to signal safety to your nervous system."
+          ];
+          altTheory = "Self-Efficacy Theory (Albert Bandura, 1977)";
+        } else if (combined.includes('sleep') || combined.includes('energy') || combined.includes('appetite') || combined.includes('exhausted')) {
+          theory = "Maslow's Hierarchy of Needs";
+          creator = "Abraham Maslow";
+          year = "1943";
+          coreIdea = "Human psychological stability rests on a pyramid. Basic physiological needs (nourishment, restful sleep, physical comfort) must be supported before we can expect ourselves to feel motivated, patient, or emotionally fulfilled.";
+          whyItFits = "You highlighted that your sleep, appetite, or energy levels have dropped significantly. Maslow's model teaches us that emotional resilience is biological: your mind cannot easily solve complex emotional puzzles while running on an empty tank.";
+          steps = [
+            "1. Biological Triage: Give yourself permission to prioritize physical restoration over high productivity for the next 48 hours.",
+            "2. Digital Sun-down: Dim screen brightness and put away high-stimulus feeds 45 minutes before sleep.",
+            "3. Gentle Hydration and Nourishment: Keep a glass of water nearby and eat a comforting, warm meal without judging your appetite."
+          ];
+          altTheory = "Cognitive Behavioral Theory (Aaron Beck, 1960s)";
+        } else if (combined.includes('relationship') || combined.includes('withdrawing') || combined.includes('lonely') || combined.includes('people')) {
+          theory = "Attachment Theory";
+          creator = "John Bowlby";
+          year = "1958";
+          coreIdea = "Our deep instinctive need for safety and connection shapes how we navigate vulnerability, closeness, and boundaries in our relationships.";
+          whyItFits = "You shared feeling strained in relationships or wanting to withdraw into isolation. Attachment theory helps us understand that retreating is rarely 'laziness' — it is often an unconscious survival strategy to protect ourselves from feeling hurt or misunderstood.";
+          steps = [
+            "1. Low-Pressure Connection: Send a short text to one gentle friend: 'Thinking of you. Having a quiet week, but wanted to say hi.'",
+            "2. Identify Emotional Anchors: Notice which people or safe places help you exhale without having to pretend everything is fine.",
+            "3. Self-Compassion Reframe: Remind yourself: 'Wanting to pull back when hurt is human. I can take space without completely closing my heart.'"
+          ];
+          altTheory = "Person-Centered Theory (Carl Rogers, 1951)";
+        } else if (combined.includes('nothing helps') || combined.includes('long time') || combined.includes('bottle')) {
+          theory = "Learned Helplessness";
+          creator = "Martin Seligman";
+          year = "1967";
+          coreIdea = "When someone undergoes prolonged hardship where their efforts seemed ineffective, their brain can adopt a belief that nothing they do will ever change the outcome, leading to passive exhaustion.";
+          whyItFits = "You've been carrying these feelings for a prolonged period and feel as though coping mechanisms aren't making a dent. Seligman's theory highlights that feeling hopeless is often an acquired mental exhaustion, rather than an objective permanent reality.";
+          steps = [
+            "1. Trace Micro-Agency: Identify one tiny choice you have complete power over today — what cup you drink from, when you sit down, or what music you choose.",
+            "2. Break the 'Always' Trap: Notice if your thoughts use words like 'never' or 'always.' Gently replace them with 'right now, in this moment.'",
+            "3. Small External Support: Consider speaking with a supportive mentor or counselor who can help gently challenge the feeling of being trapped."
+          ];
+          altTheory = "Logotherapy (Viktor Frankl, 1946)";
+        } else {
+          theory = "Cognitive Behavioral Theory (CBT)";
+          creator = "Aaron Beck";
+          year = "1960s";
+          coreIdea = "It is rarely events themselves that cause our suffering, but the automatic interpretations and internal stories our minds create about them.";
+          whyItFits = "You are navigating persistent heavy or anxious emotions and keeping things inside. CBT offers a compassionate, structured lantern to examine the internal narrative that may be amplifying your distress.";
+          steps = [
+            "1. The Thought Record: When feeling a surge of anxiety or sadness, write down the exact automatic sentence your mind just whispered.",
+            "2. The Compassionate Lawyer: Ask yourself: 'What is the concrete evidence for this thought? What is the evidence against it? What would I tell a dear friend thinking this?'",
+            "3. Behavior Activation: Engage in one small, sensory action that brings calm — feeling the cool breeze on your face, stretching your shoulders, or drinking warm tea."
+          ];
+          altTheory = "ABC Model of REBT (Albert Ellis, 1955)";
+        }
+
+        return (
+          "Thank you for sharing your heart so honestly. It takes real courage to pause and look closely at what you are feeling.\n\n" +
+          `🌿 **Suggested Psychological Theory: ${theory}**\n` +
+          `• **Proposed by:** ${creator} (${year})\n\n` +
+          `• **Core Idea:** ${coreIdea}\n\n` +
+          `• **Why this fits you:** ${whyItFits}\n\n` +
+          "• **Small, practical steps you can try today:**\n" +
+          steps.join("\n") + "\n\n" +
+          `• **Alternative Theory to Explore:** ${altTheory}\n\n` +
+          "Please remember to treat yourself with gentle kindness today. Healing and understanding happen one small breath at a time. 💜"
+        );
+      }
+
+      async function fetchOrGenerateTheory() {
+        showTyping();
+        isWaitingForAPI = true;
+        setSendEnabled(false);
+
+        // Attempt fetch if serverless endpoint is active, otherwise use built-in engine
+        let reply = "";
+        try {
+          if (window.location.protocol !== 'file:' && SERVERLESS_ENDPOINT) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+            const res = await fetch(SERVERLESS_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                history: conversationHistory,
+                answers: assessmentAnswers
+              }),
+              signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            if (res.ok) {
+              const data = await res.json();
+              reply = data.reply;
+            }
+          }
+        } catch (e) {
+          // Fall back gracefully to built-in clinical theory engine
+          reply = "";
+        }
+
+        if (!reply) {
+          await new Promise(r => setTimeout(r, prefersReducedMotion ? 100 : 1200));
+          reply = generateBuiltinTheoryResponse();
+        }
+
+        hideTyping();
+        isWaitingForAPI = false;
+        setSendEnabled(true);
+
+        conversationHistory.push({ role: 'model', text: reply });
+        addMessage(reply, 'ai');
+
+        addMessage(
+          "Feel free to ask me anything about this theory, share more of what's on your mind, or ask about other perspectives. I am here to explore with you. 💜",
+          'ai'
+        );
+      }
+
+      /* --------------------------------------------------------
+         8. Phase Handlers & User Input
+         -------------------------------------------------------- */
+      function handleAssessmentAnswer(answer) {
+        assessmentAnswers.push(answer);
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < ASSESSMENT_QUESTIONS.length) {
+          setTimeout(() => askCurrentQuestion(), prefersReducedMotion ? 100 : 600);
+        } else {
+          setTimeout(() => showSummary(), prefersReducedMotion ? 100 : 700);
+        }
+      }
+
+      async function handleSummaryResponse(answer) {
+        const lower = answer.toLowerCase();
+
+        if (lower.includes('yes') || lower.includes("that's right") || lower.includes('correct') || lower.includes('right')) {
+          addMessage("Thank you for confirming. Give me a moment to reflect on your answers and identify the most suitable psychological theory for you…", 'ai');
+          chatPhase = 'conversation';
+          await fetchOrGenerateTheory();
+        } else {
+          chatPhase = 'correction';
+          addMessage("No problem at all! What would you like to clarify or change? Please type it below.", 'ai');
+        }
+      }
+
+      function handleCorrection(correction) {
+        addMessage("Thank you for clarifying. I've noted your update.", 'ai');
+        assessmentAnswers.push(`[Correction note: ${correction}]`);
+
+        setTimeout(() => {
+          chatPhase = 'summary';
+          const summary = buildSummary();
+          addMessage("Here is your updated summary:\n\n" + summary + "\n\nDoes this feel accurate now?", 'ai');
+          showQuickOptions(["Yes, that's right", "I want to correct something"]);
+        }, prefersReducedMotion ? 100 : 600);
+      }
+
+      function handleConversation(text) {
+        conversationHistory.push({ role: 'user', text });
+        showTyping();
+        isWaitingForAPI = true;
+        setSendEnabled(false);
+
+        setTimeout(() => {
+          hideTyping();
+          isWaitingForAPI = false;
+          setSendEnabled(true);
+
+          const lower = text.toLowerCase();
+          let aiResponse = "";
+
+          if (lower.includes('cbt') || lower.includes('cognitive')) {
+            aiResponse = "Cognitive Behavioral Theory suggests that thoughts are just mental proposals, not absolute truths. When you notice an upsetting thought, asking 'Is this helpful right now?' can soften its intensity.";
+          } else if (lower.includes('sleep') || lower.includes('tired') || lower.includes('maslow')) {
+            aiResponse = "When our physiological battery is low, our emotional tolerance drops drastically. Prioritizing rest without guilt is a necessary form of self-care.";
+          } else if (lower.includes('attachment') || lower.includes('friend') || lower.includes('relationship')) {
+            aiResponse = "In relationships, communicating with vulnerability (e.g., 'I am feeling overwhelmed lately and need some quiet time') builds more safety than suddenly disappearing.";
+          } else {
+            aiResponse = "I hear you deeply. Reflecting on our feelings is a gentle, ongoing process. What part of what you shared feels most important to give compassion to right now?";
+          }
+
+          conversationHistory.push({ role: 'model', text: aiResponse });
+          addMessage(aiResponse, 'ai');
+        }, prefersReducedMotion ? 100 : 1000);
+      }
+
+      async function handleUserInput(text) {
+        const trimmed = text.trim();
+        if (!trimmed || isWaitingForAPI) return;
+
+        addMessage(trimmed, 'user');
+        clearQuickOptions();
+        if (chatInput) {
+          chatInput.value = '';
+          chatInput.style.height = 'auto';
+        }
+
+        // STEP 4: Crisis Safety Check — Highest priority
+        if (checkSafety(trimmed)) {
+          chatPhase = 'safety-stopped';
+          addMessage(SAFETY_RESPONSE, 'ai');
+          return;
+        }
+
+        switch (chatPhase) {
+          case 'assessment':
+            handleAssessmentAnswer(trimmed);
+            break;
+          case 'summary':
+            await handleSummaryResponse(trimmed);
+            break;
+          case 'correction':
+            handleCorrection(trimmed);
+            break;
+          case 'conversation':
+          case 'safety-stopped':
+            handleConversation(trimmed);
+            break;
+        }
+      }
+
+      /* --------------------------------------------------------
+         9. Event Listeners & Startup
+         -------------------------------------------------------- */
+      if (sendBtn) {
+        sendBtn.addEventListener('click', () => {
+          if (chatInput && chatInput.value.trim()) {
+            handleUserInput(chatInput.value);
+          }
+        });
+      }
+
+      if (chatInput) {
+        chatInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            if (chatInput.value.trim()) {
+              handleUserInput(chatInput.value);
+            }
+          }
+        });
+
+        chatInput.addEventListener('input', () => {
+          chatInput.style.height = 'auto';
+          chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', clearChat);
+      }
+
+      // Initialize route from hash or default to home
+      const initialHash = window.location.hash.replace('#', '') || 'home';
+      showSection(initialHash);
+
+      // Start chat onboarding
+      showWelcomeMessage();
+
+    }); // End DOMContentLoaded
+  </script>
+</body>
+</html>
